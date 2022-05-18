@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var old = {
+        id: 1,
+        name: 'zyd',
+        Msg: {
+            age: 18
+        },
+        color: ['pink', 'red']
+    }
+    // var newobj = {}
+    // for (var k in old) {
+    //     newobj[k] = old[k]   //此处newobj[k]相当于newobj.k,将属性值赋给newobj中k这个属性名
+    //     console.log(newobj[k]);
+    // }
+    // console.log(newobj)
+    var o = {}
+    function copy(newObj, oldObj) {
+        for (var k in oldObj) {
+            item = oldObj[k]
+            if (item instanceof Array) {
+                newObj[k] = []
+                copy(newObj[k], item)
+            } else if (item instanceof Object) {
+                newObj[k] = {}
+                copy(newObj[k], item)
+            } else {
+                newObj[k] = item
+            }
+        }
+    }
+    copy(o, old)
+    Object.defineProperty(old, 'id', { value: 2 })
+    console.log(old);
+    console.log(o);
+</script>
+
+</html>
